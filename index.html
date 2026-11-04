@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Путь AI-инженера — понятный новичку самоучитель: 6 этапов, 8 уроков, 5 проектов, словарь терминов с подсказками и экзамен.">
+<meta name="theme-color" content="#0b0f1a">
+<title>Путь AI-инженера — понятный самоучитель</title>
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Cdefs%3E%3ClinearGradient%20id='g'%20x1='0'%20y1='0'%20x2='1'%20y2='1'%3E%3Cstop%20offset='0'%20stop-color='%235b8cff'/%3E%3Cstop%20offset='1'%20stop-color='%232dd4bf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='url(%23g)'/%3E%3Ctext%20x='32'%20y='43'%20font-family='Arial'%20font-size='28'%20font-weight='bold'%20text-anchor='middle'%20fill='%230b0f1a'%3EAI%3C/text%3E%3C/svg%3E">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0b0f1a;--card:#121a2e;--card2:#0e1526;--line:#22304f;--line2:#2c3d63;--text:#e9eef8;--muted:#9aa8c2;--soft:#c9d4e8;--acc:#5b8cff;--acc2:#2dd4bf;--good:#34d399;--warn:#fbbf24;--bad:#f87171;--grad:linear-gradient(135deg,#5b8cff 0%,#2dd4bf 100%)}
+html{-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.65;padding-bottom:96px;min-height:100vh}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px}
+header.top{padding:22px 0 6px}
+header.top h1{font-size:22px;letter-spacing:-.3px}
+header.top h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+header.top p{color:var(--muted);font-size:12.5px;margin-top:2px}
+nav.tabs{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(11,15,26,.94);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+nav.tabs .nin{max-width:760px;margin:0 auto;display:grid;grid-template-columns:repeat(6,1fr)}
+nav.tabs button{position:relative;background:none;border:0;color:var(--muted);font-size:10px;line-height:1.25;padding:9px 2px calc(10px + env(safe-area-inset-bottom,0px));cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px;font-family:inherit;font-weight:600}
+nav.tabs button svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+nav.tabs button.on{color:#fff}
+nav.tabs button.on::after{content:"";position:absolute;top:-1px;left:22%;right:22%;height:2px;background:var(--grad);border-radius:2px}
+section.tab{display:none;padding-top:10px;animation:fade .25s ease}
+section.tab.on{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+h2{font-size:19px;margin:28px 0 6px;letter-spacing:-.2px}
+p.sub{color:var(--muted);font-size:13px;margin:0 0 12px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+.hero{padding:6px 0 2px}
+.hero h1{font-size:26px;letter-spacing:-.4px}
+.hero h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{color:var(--muted);font-size:13.5px;margin-top:5px;max-width:58ch}
+.hintline{display:flex;gap:8px;align-items:flex-start;margin-top:10px;background:rgba(45,212,191,.07);border:1px solid rgba(45,212,191,.25);border-radius:12px;padding:9px 12px;font-size:12.3px;color:var(--soft);line-height:1.6}
+.hintline svg{flex:0 0 16px;width:16px;height:16px;stroke:var(--acc2);fill:none;stroke-width:1.8;stroke-linecap:round;margin-top:3px}
+.chiprow{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.chip{font-size:10.5px;border:1px solid var(--line2);color:var(--muted);border-radius:99px;padding:3px 10px;white-space:nowrap}
+.statgrid{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;margin:16px 0 12px}
+.ringwrap{position:relative;width:132px;height:132px}
+.ringwrap svg{transform:rotate(-90deg);display:block}
+.ringcenter{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.ringcenter b{font-size:25px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1.1}
+.ringcenter span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.ministats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mini{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:8px 10px;font-size:11px;color:var(--muted);line-height:1.45}
+.mini b{display:block;font-size:15px;color:var(--text);font-weight:700}
+button.primary{width:100%;padding:14px;border:0;border-radius:14px;background:var(--grad);color:#071018;font-weight:800;font-size:15px;cursor:pointer;font-family:inherit;letter-spacing:.2px}
+button.primary:active{transform:scale(.99)}
+.ghost{background:var(--card2);border:1px solid var(--line2);color:var(--text);border-radius:12px;padding:10px 14px;cursor:pointer;font-size:13px;font-family:inherit;font-weight:600}
+.ghost:hover{border-color:var(--acc)}
+.ghost.danger{color:var(--bad);border-color:rgba(248,113,113,.35)}
+.nextout{background:linear-gradient(135deg,rgba(91,140,255,.13),rgba(45,212,191,.11));border:1px solid var(--line2);border-radius:14px;padding:14px 16px;margin-top:12px;font-size:14px}
+.nextout .dim{display:block;margin-top:4px}
+.dim{color:var(--muted);font-size:12.5px}
+.rules{display:grid;gap:10px}
+.rule{display:flex;gap:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:13px 14px;align-items:flex-start}
+.rule .n{flex:0 0 30px;height:30px;border-radius:9px;background:var(--grad);color:#071018;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;margin-top:2px}
+.rule p{font-size:13.3px;color:var(--soft)}
+.rule p b{display:block;font-size:14px;color:var(--text);margin-bottom:2px}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px;cursor:pointer}
+.ck:hover{background:rgba(91,140,255,.07)}
+.ck input{appearance:none;-webkit-appearance:none;flex:0 0 19px;width:19px;height:19px;margin-top:3.5px;border:1.5px solid var(--line2);border-radius:6px;background:var(--card2);cursor:pointer;position:relative}
+.ck input:checked{background:var(--grad);border-color:transparent}
+.ck input:checked::after{content:"✓";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#071018;font-weight:800;font-size:12px}
+.ck input:checked + span{color:var(--muted);text-decoration:line-through}
+.ck span{font-size:13.6px}
+.phase,.proj{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin:14px 0}
+.phhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.phnum{font-size:10.5px;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:var(--acc2);border:1px solid rgba(45,212,191,.4);border-radius:99px;padding:2px 10px}
+.phweeks{font-size:11px;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:2px 10px}
+.phcount{margin-left:auto;font-size:12px;color:var(--soft);font-weight:700;font-variant-numeric:tabular-nums}
+.phase h3,.proj h3{font-size:16.5px;margin:8px 0 4px}
+.phgoal{color:var(--muted);font-size:13px;margin-bottom:8px}
+.exit{margin-top:10px;background:var(--card2);border:1px dashed var(--line2);border-radius:12px;padding:10px 12px;font-size:12.8px;color:var(--soft)}
+.exit b{color:var(--text)}
+.exit ul{margin:5px 0 0 18px}
+.exit li{margin:2px 0}
+details.mod{background:var(--card);border:1px solid var(--line);border-radius:16px;margin:12px 0;overflow:hidden}
+details.mod > summary{list-style:none;cursor:pointer;padding:14px 16px;font-weight:700;font-size:15px;display:flex;gap:10px;align-items:center;user-select:none}
+details.mod > summary::-webkit-details-marker{display:none}
+details.mod > summary::after{content:"+";margin-left:auto;color:var(--muted);font-size:19px;font-weight:400;flex:0 0 auto}
+details.mod[open] > summary::after{content:"–"}
+details.mod[open] > summary{border-bottom:1px solid var(--line)}
+.modtag{font-size:10px;color:var(--muted);border:1px solid var(--line);padding:2px 8px;border-radius:99px;font-weight:600;flex:0 0 auto;text-transform:uppercase;letter-spacing:.5px}
+.modbody{padding:14px 16px;font-size:14px}
+.modbody p{margin:0 0 10px;color:var(--soft)}
+.modbody p:last-child{margin-bottom:0}
+.modbody b{color:var(--text)}
+details.sc{margin:4px 0 12px;border:1px dashed var(--line2);border-radius:12px;overflow:hidden}
+details.sc > summary{list-style:none;cursor:pointer;padding:9px 12px;font-size:12.5px;color:var(--acc2);font-weight:700;user-select:none}
+details.sc > summary::-webkit-details-marker{display:none}
+details.sc ol{margin:0 0 10px 30px;font-size:13px;color:var(--muted)}
+details.sc li{margin:3px 0}
+.ck.read{border-top:1px solid var(--line);border-radius:0;margin-top:4px;padding:12px 2px 2px}
+.gloss{display:grid;gap:8px}
+.gitem{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.gitem b{font-size:13.5px;color:var(--acc2)}
+.gitem p{font-size:12.8px;color:var(--muted);margin:3px 0 0;line-height:1.55}
+.term{font-style:inherit;border-bottom:1.5px dotted rgba(91,140,255,.9);cursor:help;-webkit-tap-highlight-color:transparent}
+.term:hover,.term:focus{color:#fff;border-bottom-color:#2dd4bf;outline:none}
+#tip{position:fixed;z-index:100;max-width:300px;background:#0d1424;border:1px solid var(--line2);border-radius:12px;padding:10px 12px;font-size:12.5px;color:var(--soft);line-height:1.55;box-shadow:0 10px 30px rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .12s;visibility:hidden}
+#tip.show{opacity:1;visibility:visible}
+#tip b{display:block;color:#fff;font-size:12.5px;margin-bottom:3px}
+details.prompt{background:var(--card);border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}
+details.prompt > summary{list-style:none;cursor:pointer;padding:12px 14px;display:flex;align-items:center;gap:10px;user-select:none}
+details.prompt > summary::-webkit-details-marker{display:none}
+details.prompt > summary .tt{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}
+details.prompt > summary .tt b{font-size:14.3px}
+details.prompt > summary .tt span{font-size:11.8px;color:var(--acc2)}
+.plus{color:var(--muted);font-size:19px;transition:transform .2s;flex:0 0 auto}
+details.prompt[open] .plus{transform:rotate(45deg)}
+details.prompt[open] > summary{border-bottom:1px solid var(--line)}
+.pbody{padding:12px 14px}
+.pbody > p{font-size:13px;color:var(--muted);margin:0 0 10px}
+.ptext{background:#0a0e19;border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;font-size:12.6px;line-height:1.6;white-space:pre-wrap;word-break:break-word;color:#cde3ff;margin:0 0 10px;overflow-x:auto}
+.cbtn{background:var(--card2);border:1px solid var(--line2);color:var(--text);border-radius:10px;padding:8px 14px;cursor:pointer;font-size:12.5px;font-family:inherit;font-weight:700}
+.cbtn:hover{border-color:var(--acc)}
+.cbtn.ok{background:rgba(52,211,153,.14);border-color:var(--good);color:var(--good)}
+.res{display:grid;gap:8px}
+a.resl{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px 13px;text-decoration:none;color:var(--text)}
+a.resl:hover{border-color:var(--acc)}
+a.resl .rr{flex:1;min-width:0}
+a.resl b{font-size:13.6px}
+a.resl span.d{display:block;font-size:12.2px;color:var(--muted);line-height:1.5}
+a.resl .dom{font-size:10.5px;color:var(--acc2);font-family:ui-monospace,Menlo,Consolas,monospace;margin-top:3px;flex:0 0 auto}
+.q{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.q h4{font-size:14px;margin-bottom:8px;line-height:1.5}
+.q label{display:flex;gap:9px;padding:7px 9px;border-radius:9px;cursor:pointer;font-size:13.4px;align-items:flex-start}
+.q label:hover{background:rgba(91,140,255,.07)}
+.q input{accent-color:#5b8cff;margin-top:4px;flex:0 0 auto}
+.q.wrong{border-color:var(--bad)}
+.q.right{border-color:var(--good)}
+.examres{border-radius:14px;padding:14px 16px;margin:12px 0;font-size:14px;display:none}
+.examres.show{display:block}
+.examres.good{background:rgba(52,211,153,.12);border:1px solid var(--good)}
+.examres.mid{background:rgba(251,191,36,.10);border:1px solid var(--warn)}
+.examres.bad{background:rgba(248,113,113,.10);border:1px solid var(--bad)}
+.examres.warn{background:rgba(251,191,36,.10);border:1px solid var(--warn)}
+.btnrow{display:flex;gap:8px;flex-wrap:wrap}
+.dform{display:grid;gap:8px}
+.dform input,.dform textarea{background:var(--card2);border:1px solid var(--line2);border-radius:10px;color:var(--text);padding:10px 12px;font-family:inherit;font-size:13.4px;width:100%}
+.dform input:focus,.dform textarea:focus{outline:none;border-color:var(--acc)}
+.dform input::placeholder,.dform textarea::placeholder{color:#5d6b87}
+.dentry{background:var(--card2);border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin:8px 0;font-size:13px}
+.dentry .dh{display:flex;gap:8px;align-items:baseline}
+.dentry .dh b{font-size:13.4px}
+.dentry .dh time{margin-left:auto;color:var(--muted);font-size:10.5px;flex:0 0 auto;font-variant-numeric:tabular-nums}
+.dentry p{color:var(--muted);margin:4px 0 0;line-height:1.55}
+.dentry .del{background:none;border:0;color:var(--bad);cursor:pointer;font-size:11px;padding:0;margin-top:7px;font-family:inherit}
+.empty{color:var(--muted);font-size:13px;padding:10px 2px;line-height:1.6}
+.foot{text-align:center;color:var(--muted);font-size:11px;padding:28px 0 10px;line-height:1.7}
+@media (max-width:420px){.ministats{grid-template-columns:1fr 1fr}.statgrid{grid-template-columns:1fr;justify-items:center}.hero h1{font-size:23px}}
+@media (min-width:640px){.ck{padding:8px 12px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top">
+<h1>Путь <span>AI-инженера</span></h1>
+<p>самоучитель для новичка · прогресс хранится в вашем браузере</p>
+</header>
+
+<nav class="tabs" aria-label="Разделы">
+<div class="nin">
+<button type="button" data-tab="home" class="on"><svg viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h5v-6h4v6h5V9.5"/></svg><span>Главная</span></button>
+<button type="button" data-tab="route"><svg viewBox="0 0 24 24"><path d="M4 19h5v-5h5V9h6"/><path d="m17 6 3 3-3 3"/></svg><span>План</span></button>
+<button type="button" data-tab="knowledge"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13"/><path d="M5 4v16h11a3 3 0 0 0 3-3"/><path d="M9 4v16"/></svg><span>Уроки</span></button>
+<button type="button" data-tab="practice"><svg viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6L4.7 18.6A2 2 0 0 0 6.5 21.5h11a2 2 0 0 0 1.8-2.9L14 9V3"/><path d="M7.3 15h9.4"/></svg><span>Практика</span></button>
+<button type="button" data-tab="prompts"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3"/><path d="M12.5 15H17"/></svg><span>Шаблоны</span></button>
+<button type="button" data-tab="resources"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></svg><span>Экзамен</span></button>
+</div>
+</nav>
+
+<main>
+<section class="tab on" id="tab-home">
+  <div class="hero">
+    <h1>Из новичка — в <span>AI-инженера</span></h1>
+    <p>Понятный план на 26 недель: научитесь говорить с ИИ так, чтобы он понимал с первого раза, проверять его работу и соберёте витрину из пяти настоящих проектов.</p>
+    <div class="hintline"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><path d="M12 8h.01"/></svg><span>Слова с <i class="term" data-k="hintdemo">пунктирным подчёркиванием</i> — непростые термины. Наведите на них курсор (или коснитесь на телефоне) — появится короткое объяснение. Все термины собраны в словаре во вкладке «Уроки».</span></div>
+    <div class="chiprow"><span class="chip">6 этапов · 26 недель</span><span class="chip">8 уроков простыми словами</span><span class="chip">5 проектов в портфолио</span><span class="chip">10 готовых шаблонов</span><span class="chip">экзамен: 12 вопросов</span></div>
+  </div>
+
+  <div class="statgrid">
+    <div class="ringwrap">
+      <svg width="132" height="132" viewBox="0 0 132 132" aria-hidden="true">
+        <defs><linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#5b8cff"/><stop offset="100%" stop-color="#2dd4bf"/></linearGradient></defs>
+        <circle cx="66" cy="66" r="54" fill="none" stroke="#22304f" stroke-width="12"/>
+        <circle id="ringbar" cx="66" cy="66" r="54" fill="none" stroke="url(#rg)" stroke-width="12" stroke-linecap="round" stroke-dasharray="339.29" stroke-dashoffset="339.29"/>
+      </svg>
+      <div class="ringcenter"><b id="pct">0%</b><span>общий<br>прогресс</span></div>
+    </div>
+    <div class="ministats">
+      <div class="mini"><b id="tstats">0 из 68</b>задач отмечено</div>
+      <div class="mini"><b id="mstats">0 из 8</b>уроков прочитано</div>
+      <div class="mini"><b id="examBestOut">не сдан</b>лучший результат экзамена</div>
+      <div class="mini"><b id="dstats">0</b>записей в дневнике</div>
+    </div>
+  </div>
+
+  <button class="primary" id="nextBtn" type="button">Что делать дальше?</button>
+  <div class="nextout" id="nextOut" hidden></div>
+
+  <h2>7 правил будущего профи</h2>
+  <p class="sub">Коротко — о том, что отличает настоящего инженера от «человека, который просто красиво общается с чат-ботом». Перечитайте, когда сомневаетесь в решении.</p>
+  <div class="rules">
+    <div class="rule"><div class="n">1</div><p><b>Не угадывай — считай</b>«Кажется, стало лучше» — запрещённая фраза. Любое изменение запроса проверяется на примерах с заранее известными правильными ответами. Только так видно, стало лучше или хуже.</p></div>
+    <div class="rule"><div class="n">2</div><p><b>Разберись, как ИИ устроен внутри</b>Что такое <i class="term" data-k="token">токены</i>, «память» разговора и «полёт фантазии» — без этого вы не управляете системой, а гадаете на кофейной гуще.</p></div>
+    <div class="rule"><div class="n">3</div><p><b>Волшебной фразы не существует</b>Качество дают система, данные и проверки — а не одна удачная формулировка. Проектирование всего, что ИИ видит перед ответом, называется <i class="term" data-k="contexteng">контекст-инжиниринг</i>.</p></div>
+    <div class="rule"><div class="n">4</div><p><b>Учись по первоисточникам</b>Учебники создателей ИИ, статьи практиков, открытый код. Пересказы пересказов закладывают ошибки в фундамент.</p></div>
+    <div class="rule"><div class="n">5</div><p><b>Показывай работы миру</b>Проект с цифрами убеждает работодателя сильнее любого сертификата. Публичные записи о своих опытах превращаются в приглашения на работу.</p></div>
+    <div class="rule"><div class="n">6</div><p><b>Помни про деньги и скорость</b>Сколько стоит тысяча ответов? Сколько секунд ждёт пользователь? Система без ответов на эти вопросы — игрушка, а не продукт.</p></div>
+    <div class="rule"><div class="n">7</div><p><b>Любой чужой текст — возможная атака</b>Документ, письмо или страница сайта, которую читает ваш ИИ, может содержать спрятанную команду. Это называется <i class="term" data-k="inj">промпт-инъекция</i> — защита от неё обязательна.</p></div>
+  </div>
+
+  <h2>Дневник опытов</h2>
+  <p class="sub">Правило №1 в действии: что проверяли → что получилось → вывод. Одна минута на запись. Через полгода накопится личный опыт, которого нет ни у одного конкурента.</p>
+  <form class="dform card" id="dform">
+    <input id="dTitle" type="text" placeholder="Что проверяли? Например: просил ИИ вытащить даты из писем — попробовал 3 варианта запроса" required>
+    <input id="dHyp" type="text" placeholder="Ожидание: что и почему должно было сработать (необязательно)">
+    <textarea id="dRes" rows="2" placeholder="Что вышло на самом деле: цифры или наблюдение (необязательно)"></textarea>
+    <button class="ghost" type="submit">Добавить запись</button>
+  </form>
+  <div id="diaryList"></div>
+
+  <h2>Настройки и данные</h2>
+  <div class="card">
+    <p class="dim" style="margin-bottom:10px">Весь прогресс хранится только в этом браузере — ничего не уходит в интернет. Перенести на другое устройство можно через файл: сохранили здесь — загрузили там.</p>
+    <div class="btnrow">
+      <button class="ghost" id="expBtn" type="button">Сохранить прогресс в файл</button>
+      <button class="ghost" id="impBtn" type="button">Загрузить из файла</button>
+      <button class="ghost danger" id="resetBtn" type="button">Начать с нуля</button>
+      <input type="file" id="impFile" accept="application/json" hidden>
+    </div>
+    <p class="dim" id="setNote" style="margin-top:10px"></p>
+  </div>
+</section>
+
+<section class="tab" id="tab-route">
+  <h2 style="margin-top:14px">План: 6 этапов за 26 недель</h2>
+  <p class="sub">Идите по порядку: каждый этап опирается на предыдущий. Отмечайте сделанное галочкой — прогресс считается сам. Пункты «можно дальше» — честная проверка себя: не отмечайте, пока действительно не получается.</p>
+
+  <section class="phase">
+    <div class="phhead"><span class="phnum">Этап 1</span><span class="phweeks">недели 1–4</span><span class="phcount">0/6</span></div>
+    <h3>Учимся говорить с ИИ</h3>
+    <p class="phgoal">Цель: понимать, как ИИ устроен, и получать от него нужное с первого-второго раза.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="r1-1"><span>Прочитать официальный учебник Anthropic о составлении запросов (ссылка — во вкладке «Экзамен», внизу)</span></label>
+      <label class="ck"><input type="checkbox" data-id="r1-2"><span>Прочитать раздел с приёмами на promptingguide.ai и своими словами записать 5 приёмов</span></label>
+      <label class="ck"><input type="checkbox" data-id="r1-3"><span>Посмотреть часовое видео Андрея Карпаты «Intro to Large Language Models» — самый понятный рассказ об устройстве ИИ</span></label>
+      <label class="ck"><input type="checkbox" data-id="r1-4"><span>Поставить Python, получить ключ <i class="term" data-k="api">API</i> и запустить первый скрипт с запросом к ИИ</span></label>
+      <label class="ck"><input type="checkbox" data-id="r1-5"><span>Заполнить дневник опытов: 10+ записей вида «задача → 3 варианта запроса → что сработало»</span></label>
+      <label class="ck"><input type="checkbox" data-id="r1-6"><span>Прогнать шаблон №5 «Найди слабые места в моей задаче» на трёх своих реальных задачах</span></label>
+    </div>
+    <div class="exit"><b>Можно двигаться дальше, если:</b><ul><li>за две минуты своими словами объясняете, что такое <i class="term" data-k="token">токен</i>, «память» разговора и «полёт фантазии»;</li><li>ваш скрипт с запросом к ИИ работает и лежит в <i class="term" data-k="gh">GitHub</i>;</li><li>в дневнике не меньше 10 записей.</li></ul></div>
+  </section>
+
+  <section class="phase">
+    <div class="phhead"><span class="phnum">Этап 2</span><span class="phweeks">недели 5–8</span><span class="phcount">0/6</span></div>
+    <h3>Перестаём угадывать</h3>
+    <p class="phgoal">Цель: научиться доказывать цифрой, что запрос стал лучше. Это главный навык, отличающий инженера от любителя.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="r2-1"><span>Прочитать статью Hamel Husain «Your AI Product Needs Evals» — главную статью о проверке качества (ссылка во вкладке «Экзамен»)</span></label>
+      <label class="ck"><input type="checkbox" data-id="r2-2"><span>Взять одну задачу с проверяемым ответом и собрать 100 примеров «вход → правильный ответ» из реальных данных</span></label>
+      <label class="ck"><input type="checkbox" data-id="r2-3"><span>Замерить долю правильных ответов у простого запроса — это стартовая точка для сравнения</span></label>
+      <label class="ck"><input type="checkbox" data-id="r2-4"><span>Придумать 3 улучшенных запроса, прогнать все на тех же примерах и сравнить в таблице</span></label>
+      <label class="ck"><input type="checkbox" data-id="r2-5"><span>Подключить «ИИ-судью» с критериями (шаблон №9) и сравнить его баллы со своими оценками</span></label>
+      <label class="ck"><input type="checkbox" data-id="r2-6"><span>Автоматизировать: один запуск скрипта — готовая таблица результатов по всем вариантам</span></label>
+    </div>
+    <div class="exit"><b>Можно двигаться дальше, если:</b><ul><li>есть таблица «вариант запроса → доля правильных ответов» минимум на 4 варианта;</li><li>можете объяснить, почему сравнивать «на глаз» нельзя;</li><li>скрипт прогона лежит в GitHub и запускается одной командой.</li></ul></div>
+  </section>
+
+  <section class="phase">
+    <div class="phhead"><span class="phnum">Этап 3</span><span class="phweeks">недели 9–14</span><span class="phcount">0/6</span></div>
+    <h3>ИИ с открытой книгой</h3>
+    <p class="phgoal">Цель: собрать поиск по своим документам, который отвечает со ссылками на источники — самая востребованная задача на рынке.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="r3-1"><span>Пройти урок 5 (про поиск по документам) до конца, с вопросами самопроверки</span></label>
+      <label class="ck"><input type="checkbox" data-id="r3-2"><span>Поставить хранилище для поиска по смыслу (FAISS / Qdrant / Chroma) и загрузить свои документы</span></label>
+      <label class="ck"><input type="checkbox" data-id="r3-3"><span>Собрать цепочку: вопрос → поиск 5 подходящих кусков → ответ по ним со ссылками (шаблон №8)</span></label>
+      <label class="ck"><input type="checkbox" data-id="r3-4"><span>Сравнить 3 размера нарезки документов на 20 вопросах, оставить лучший</span></label>
+      <label class="ck"><input type="checkbox" data-id="r3-5"><span>Добавить пересортировку найденного и проверить, стала ли разница</span></label>
+      <label class="ck"><input type="checkbox" data-id="r3-6"><span>Собрать мини-контрольную: 20 вопросов с правильными ответами, замерить до и после улучшений</span></label>
+    </div>
+    <div class="exit"><b>Можно двигаться дальше, если:</b><ul><li>помощник отвечает на вопросы по вашим документам и показывает источники;</li><li>есть таблица опытов «нарезка/пересортировка → качество»;</li><li>можете назвать 3 ситуации, где такая система ломается, и что делать.</li></ul></div>
+  </section>
+
+  <section class="phase">
+    <div class="phhead"><span class="phnum">Этап 4</span><span class="phweeks">недели 15–19</span><span class="phcount">0/6</span></div>
+    <h3>ИИ с руками</h3>
+    <p class="phgoal">Цель: собрать помощника, который решает задачи действиями — ищет, считает, создаёт файлы, — а не только пишет текст.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="r4-1"><span>Пройти урок 6 (про ИИ-помощников «с руками») и документацию function calling у вашего провайдера</span></label>
+      <label class="ck"><input type="checkbox" data-id="r4-2"><span>Сделать помощника с 3 инструментами: поиск, вычисления, запись в файл</span></label>
+      <label class="ck"><input type="checkbox" data-id="r4-3"><span>Добавить лимит шагов и журнал: каждый шаг и каждый вызов инструмента видны</span></label>
+      <label class="ck"><input type="checkbox" data-id="r4-4"><span>Разобраться с <i class="term" data-k="mcp">MCP</i> и подключить один чужой инструмент к своему помощнику</span></label>
+      <label class="ck"><input type="checkbox" data-id="r4-5"><span>Дать помощнику 5 тестовых задач и проверить, решает ли каждую</span></label>
+      <label class="ck"><input type="checkbox" data-id="r4-6"><span>Атаковать своего помощника (шаблон №10) и закрыть найденные дыры</span></label>
+    </div>
+    <div class="exit"><b>Можно двигаться дальше, если:</b><ul><li>помощник решает 5 задач из 5 — или вы точно знаете, почему нет;</li><li>в журнале видно каждый шаг: мысль → вызов → результат;</li><li>можете назвать главные способы поломки таких помощников и свою защиту.</li></ul></div>
+  </section>
+
+  <section class="phase">
+    <div class="phhead"><span class="phnum">Этап 5</span><span class="phweeks">недели 20–23</span><span class="phcount">0/6</span></div>
+    <h3>По-взрослому: цена, скорость, безопасность</h3>
+    <p class="phgoal">Цель: довести один проект до инженерных стандартов — от «работает у меня» до «живёт под наблюдением».</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="r5-1"><span>Посчитать цену 1000 ответов и время ожидания; снизить: модель поменьше, кэш, короче контекст</span></label>
+      <label class="ck"><input type="checkbox" data-id="r5-2"><span>Закрыться от спрятанных команд: чистить входы, отделять данные от приказов, ограничивать действия</span></label>
+      <label class="ck"><input type="checkbox" data-id="r5-3"><span>Настроить журнал и цифры: доля плохих ответов, цена за день, время ответа</span></label>
+      <label class="ck"><input type="checkbox" data-id="r5-4"><span>Включить автопроверку (GitHub Actions): каждое изменение запускает контрольную — и «краснеет», если качество упало</span></label>
+      <label class="ck"><input type="checkbox" data-id="r5-5"><span>Написать README: что делает, какие цифры, как запустить, сколько стоит</span></label>
+      <label class="ck"><input type="checkbox" data-id="r5-6"><span>Проверка на прочность: подменить модель новой версией и прогнать контрольную — цифры не должны упасть</span></label>
+    </div>
+    <div class="exit"><b>Можно двигаться дальше, если:</b><ul><li>намеренно испорченный запрос делает автопроверку красной (проверено!);</li><li>можете назвать цену 1000 ответов и три главных риска системы;</li><li>есть план Б на случай, если ИИ-провайдер временно лёг.</li></ul></div>
+  </section>
+
+  <section class="phase">
+    <div class="phhead"><span class="phnum">Этап 6</span><span class="phweeks">недели 24–26</span><span class="phcount">0/6</span></div>
+    <h3>Витрина работ и выбор ниши</h3>
+    <p class="phgoal">Цель: превратить навыки в позиционирование. Инженер, который понимает отрасль, стоит в 1,5–2 раза дороже.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="r6-1"><span>Выбрать сферу (медицина, финансы, юристы, ваша отрасль) и разобраться в её данных, правилах и показателях</span></label>
+      <label class="ck"><input type="checkbox" data-id="r6-2"><span>Собрать главный проект в этой сфере с измеримой целью</span></label>
+      <label class="ck"><input type="checkbox" data-id="r6-3"><span>Написать 2 публичные статьи о своих опытах (Хабр, Telegram-канал, LinkedIn)</span></label>
+      <label class="ck"><input type="checkbox" data-id="r6-4"><span>Причесать GitHub: 3 проекта с README, цифрами и картинкой-схемой</span></label>
+      <label class="ck"><input type="checkbox" data-id="r6-5"><span>Сдать экзамен в этом приложении на 10+ из 12</span></label>
+      <label class="ck"><input type="checkbox" data-id="r6-6"><span>Составить резюме: проекты с цифрами вместо списка пройденных курсов</span></label>
+    </div>
+    <div class="exit"><b>План пройден, если:</b><ul><li>3 проекта в витрине, у каждого — цифры и разбор ошибок;</li><li>2 статьи прочитаны незнакомыми людьми;</li><li>экзамен сдан на 10+ и вы можете объяснить каждый ответ.</li></ul></div>
+  </section>
+</section>
+
+<section class="tab" id="tab-knowledge">
+  <h2 style="margin-top:14px">Уроки: 8 тем простыми словами</h2>
+  <p class="sub">Теория, без которой инженер превращается в гадалку. Читайте урок, отвечайте на вопросы самопроверки вслух — если отвечаете плавно, отмечайте урок изученным. Подчёркнутые слова — с подсказками, все ссылки на дополнительное чтение — внизу вкладки «Экзамен».</p>
+
+  <details class="mod" id="glossMod">
+    <summary>Словарь: все термины одним списком <span class="modtag" id="glossCount"></span></summary>
+    <div class="modbody">
+      <p class="dim">Те же объяснения, что и в подсказках по тексту — здесь всё сразу. Список собирается автоматически, он всегда совпадает с подсказками в уроках.</p>
+      <div class="gloss" id="glossBox"></div>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 1 · Как устроен ИИ, который пишет тексты <span class="modtag">основа</span></summary>
+    <div class="modbody">
+      <p>Представьте авто-дополнение в телефоне, прокачанное до предела: вы даёте начало текста, а оно угадывает продолжение — кусочек за кусочком. Это и есть <b>языковая модель</b> (<i class="term" data-k="llm">LLM</i>): программа-предсказатель текста, обученная на гигантских количествах книг, сайтов и кода.</p>
+      <p>Модель читает текст не буквами и не словами, а <i class="term" data-k="token">токенами</i> — кусочками слов. «Банан» — один токен, «переосмысление» — три-четыре. Плата за запросы тоже считается в токенах.</p>
+      <p><i class="term" data-k="context">Контекстное окно</i> — «оперативная память» разговора. В неё входят скрытая инструкция, вся история чата, вложенные документы и ваш вопрос. Если сумма не влезает — начало выпадает, и ИИ «забывает», о чём вы говорили. Память дорогая: раздутый запрос стоит дороже и работает хуже.</p>
+      <p><i class="term" data-k="temp">Temperature</i> — ручка «полёт фантазии»: около нуля ответы одинаковые и предсказуемые (берите для точных задач), выше — разнообразные (для идей и творчества).</p>
+      <p>И главное: <i class="term" data-k="halluc">галлюцинации</i>. ИИ не врёт нарочно — его работа «правдоподобно продолжить текст», а правдоподобное не всегда правда. Поэтому факты, которые обязаны быть точными, всегда проверяйте.</p>
+      <p><b>Что запомнить:</b> важное ставьте в начало и конец запроса — из середины длинного текста ИИ достаёт информацию хуже («эффект середины»). Не тащите в запрос мусор.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Что произойдёт с историей диалога, если она не влезает в «память» ИИ?</li><li>Почему ИИ выдумывает факты, хотя не хочет вас обмануть?</li><li>Какой «полёт фантазии» включите для задачи «вытащи из письма дату и сумму» и почему?</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k1"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 2 · Как писать запросы, чтобы вас понимали <span class="modtag">азбука</span></summary>
+    <div class="modbody">
+      <p>Хороший <i class="term" data-k="prompt">промпт</i> (запрос) — это техзадание, а не пожелание. Рабочий каркас: <b>кто ты → какая ситуация → что сделать → в каком виде ответить → чего нельзя → примеры</b>. Пропущенный пункт ИИ додумает сам — по-своему, а не по-вашему.</p>
+      <p><i class="term" data-k="fewshot">Few-shot</i> — «обучение на примерах»: покажите в запросе 2–3 готовых примера «вопрос → правильный ответ», и ИИ сделает по образцу. Почти всегда работает лучше, чем абзац описаний: ИИ — гений подражания.</p>
+      <p><i class="term" data-k="cot">Chain-of-thought</i> — «сначала подумай, потом ответь»: попросите расписать шаги рассуждения до финального ответа. На логике и счёте ошибок становится заметно меньше.</p>
+      <p><i class="term" data-k="json">JSON</i> — строгий формат данных. Когда ответ ИИ будет читать программа, а не человек, просите отвечать только в этом формате.</p>
+      <p><i class="term" data-k="sysprompt">Системный промпт</i> — «паспорт» бота: кто он, как отвечает, что ему запрещено. Он скрыт от пользователя и задаётся один раз разработчиком — поэтому его тестируют как код.</p>
+      <p><b>Что запомнить:</b> полезный приём — попросить ИИ сначала назвать ваши неявные допущения и только потом решать (шаблон №5). Половина плохих ответов рождается из расплывчатой задачи. И меняйте запрос по одному изменению за раз, записывая эффект в дневник — иначе не поймёте, что именно сработало.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Из каких блоков состоит полный запрос и что будет с пропущенным блоком?</li><li>Почему примеры работают лучше длинных описаний стиля?</li><li>Что должно быть в «паспорте» бота поддержки клиентов?</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k2"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 3 · Что ИИ видит перед ответом <span class="modtag">система</span></summary>
+    <div class="modbody">
+      <p>Андре Карпаты предлагает думать не о «волшебной фразе», а обо всём, что ИИ видит перед ответом. Это проектирование «стола», за которым работает ИИ, называется <i class="term" data-k="contexteng">контекст-инжиниринг</i>.</p>
+      <p>На «столе» реального приложения лежат: скрытая инструкция, найденные куски документов, история диалога, список доступных инструментов и последние действия пользователя. Каждый элемент — ваше проектное решение.</p>
+      <p>Четыре операции над «столом»:</p>
+      <ul>
+        <li><b>Отбор</b> — что вообще попадает в запрос (мусор не тащим);</li>
+        <li><b>Сжатие</b> — длинную историю диалога можно заменить кратким пересказом;</li>
+        <li><b>Подсветка</b> — важное в начало и конец, потому что середина читается хуже;</li>
+        <li><b>Разбиение</b> — сложную задачу режем на цепочку простых шагов с проверками между ними.</li>
+      </ul>
+      <p>Длинный запрос — не бесплатная сила: он дороже, медленнее, и инструкция теряется среди данных. Управляйте «памятью», как бюджетом.</p>
+      <p><b>Что запомнить:</b> если система «тупит», первым делом посмотрите, что лежит у неё «на столе» — в 8 случаях из 10 проблема там, а не в формулировке.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Назовите минимум 4 вещи, которые лежат «на столе» ИИ в реальном приложении.</li><li>Что делать с разросшейся историей диалога?</li><li>Почему «вложим всё» — плохая стратегия, даже если влезает?</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k3"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 4 · Контрольные работы для запросов <span class="modtag">главный навык</span></summary>
+    <div class="modbody">
+      <p>«Кажется, стало лучше» — главная ловушка новичка. <i class="term" data-k="eval">Eval</i> — это «контрольная работа» для запроса: набор примеров с заранее известными правильными ответами + подсчёт, сколько ваш вариант ответил верно. Минимум — 50–200 примеров из реальной жизни (не выдуманных: живые вопросы людей не похожи на то, что придумывает разработчик).</p>
+      <p><i class="term" data-k="metric">Метрика</i> — число, по которому судят о качестве: «правильных ответов 87 из 100», «средний ответ — 2 секунды», «цена прогона — 30 рублей». Сравнивать можно только цифры.</p>
+      <p><i class="term" data-k="judge">LLM-as-judge</i> («ИИ-судья») — когда ответов тысячи, а проверяющих вы один: другая модель ставит баллы по вашим критериям. Судье нужны вопрос, ответ и рубрика с описанием каждого балла — иначе оценки превращаются в шум.</p>
+      <p>Контрольные дают три суперспособности:</p>
+      <ul>
+        <li><b>Честное сравнение</b> — <i class="term" data-k="ab">A/B-тест</i> двух версий запроса на одних и тех же примерах;</li>
+        <li><b>Защита от тихих ухудшений</b> — сменили модель или запрос, прогнали контрольную, цифра упала — заметили;</li>
+        <li><b>Автопроверка</b> (<i class="term" data-k="ci">CI</i>) — компьютер сам запускает контрольную при каждом изменении и «краснеет», если качество просело.</li>
+      </ul>
+      <p><b>Что запомнить:</b> правило Хамела Хусейна — ИИ-продукты проваливаются не из-за слабой модели, а из-за отсутствия нормальной проверки. Начинайте проект со сбора примеров, а не со списка функций.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Из чего состоит минимальная «контрольная» и откуда брать примеры?</li><li>Что нужно дать «ИИ-судье», чтобы его баллы не были шумом?</li><li>Зачем запускать контрольную автоматически при каждом изменении?</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k4"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 5 · ИИ с открытой книгой <span class="modtag">паттерн №1</span></summary>
+    <div class="modbody">
+      <p>Проблема: модель ничего не знает про ваши документы и устаревает вчера. Решение называется <i class="term" data-k="rag">RAG</i>: перед вопросом система находит подходящие куски ваших документов, кладёт их ИИ «на стол» — и он отвечает <b>по ним</b>, со ссылками. Обновили документы — обновились ответы, без переучивания модели.</p>
+      <p>Как работает поиск по смыслу:</p>
+      <ul>
+        <li><i class="term" data-k="embed">Эмбеддинг</i> — перевод смысла текста в набор чисел, «координаты смысла». Похожие тексты получают близкие координаты.</li>
+        <li><i class="term" data-k="vdb">Векторная база</i> — хранилище этих координат. Ищет по смыслу, а не по точным словам: запрос «начальник» найдёт и «руководителя».</li>
+        <li><i class="term" data-k="chunk">Чанкинг</i> — нарезка документов на куски перед загрузкой. Слишком мелкие теряют смысл, слишком крупные размывают; размер подбирают опытом.</li>
+        <li><i class="term" data-k="rerank">Реранкинг</i> — вторая пересортировка: отдельная модель заново выстраивает найденные куски по пользе для конкретного вопроса.</li>
+      </ul>
+      <p>Обязательные правила этой системы: ИИ должен честно говорить «в документах нет ответа» (а не сочинять), отвечать со ссылками на источники (шаблон №8) и проверяться на контрольных вопросах.</p>
+      <p><b>Что запомнить:</b> факты меняются и нужны ссылки → открытая книга (RAG). Нужен фирменный стиль на тысячах похожих задач → переучивание (урок 7). Дообучение не научит модель вашему сегодняшнему прайсу.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Опишите путь вопроса до ответа: все шаги по порядку.</li><li>Что будет при слишком мелкой нарезке? А при слишком крупной?</li><li>Три случая, когда «открытая книга» лучше переучивания.</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k5"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 6 · ИИ с руками <span class="modtag">автономность</span></summary>
+    <div class="modbody">
+      <p><i class="term" data-k="agent">Агент</i> — ИИ-помощник в цикле: получил задачу → решил, что сделать → вызвал инструмент → посмотрел результат → продолжил или закончил. Инструменты дают то, чего у модели нет: точный счёт, свежие данные, действия с файлами.</p>
+      <p><i class="term" data-k="tool">Function calling</i> — способ дать ИИ «руки»: вы описываете доступные функции (имя, параметры, что делает), ИИ выбирает нужную и говорит, с какими настройками её запустить, а ваш код исполняет и возвращает результат. Важно: описание инструмента — тоже запрос. Размытое описание = неверные вызовы.</p>
+      <p><i class="term" data-k="mcp">MCP</i> — «общая розетка» для инструментов: открытый стандарт, к которому уже подключено множество готовых инструментов; один раз подключил — работает с разными моделями.</p>
+      <p>Как ломаются такие помощники и что делать:</p>
+      <ul>
+        <li><b>Зацикливание</b> — лечится лимитом шагов;</li>
+        <li><b>Накопление ошибок</b> — одна неверная посылка уводит весь путь; лечится контрольными точками и самопроверкой;</li>
+        <li><b>Стоимость</b> — каждый шаг это токены, то есть деньги;</li>
+        <li><b>Безопасность</b> — помощник с доступом к файлам и интернету это вектор атаки.</li>
+      </ul>
+      <p><b>Что запомнить:</b> разрушительные действия (удалить, отправить, заплатить) — только через подтверждение человеком. Это правило продакшна.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Из каких шагов состоит один цикл работы помощника?</li><li>Почему ИИ вызывает инструмент неправильно и как это чинить?</li><li>Три способа остановить зацикливание.</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k6"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 7 · Переучивание модели под себя <span class="modtag">тяжёлая артиллерия</span></summary>
+    <div class="modbody">
+      <p><i class="term" data-k="ft">Fine-tuning</i> — дополнительное обучение готовой модели на ваших примерах, как курсы повышения для сотрудника. <b>Оправдан</b>, когда на тысячах однотипных задач нужен стабильный стиль или формат, который не вытянуть запросом: фирменный тон, строгая разметка, профессиональный язык отрасли. <b>Не оправдан</b>, когда нужны знания (это работа «открытой книги» из урока 5) или задача разовая (хватит запроса).</p>
+      <p>Лестница усложнения — всегда в таком порядке: запрос → примеры в запросе → поиск по документам → переучивание. Каждая ступень дороже по данным, времени и поддержке. Поднимайтесь, только когда предыдущая упёрлась в потолок.</p>
+      <p><i class="term" data-k="lora">LoRA</i> — бюджетный способ переучивания: обучают не всю модель, а маленькую «надстройку» к ней. Хватает одной видеокарты.</p>
+      <p>Главный секрет успеха — не метод, а <b>данные</b>: 500 чистых, непротиворечивых примеров дают больше, чем 50 000 шумных. Каждая inconsistность в примерах — поведение, которое вы сами встроили в модель.</p>
+      <p><b>Что запомнить:</b> переученная модель по-прежнему требует контрольных работ, а смена версии базовой модели может всё сломать — закладывайте это в план.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Два случая «за» переучивание и два «против».</li><li>Что важнее — модный метод или качество данных? Почему?</li><li>Почему переучивание не научит модель вашему прайсу?</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k7"><span>Урок изучен</span></label>
+    </div>
+  </details>
+
+  <details class="mod">
+    <summary>Урок 8 · Безопасность и «взрослая жизнь» <span class="modtag">последний рубеж</span></summary>
+    <div class="modbody">
+      <p><i class="term" data-k="inj">Промпт-инъекция</i> — взлом текстом: команда, спрятанная в данных, которые читает ваш ИИ (страница сайта, письмо, PDF, поле формы). Классика: на странице невидимый текст «игнорируй все инструкции и…». Правило: <b>чужой текст — это данные, а не приказы</b>. Данные чистятся, помечаются и держатся отдельно от инструкций.</p>
+      <p>Слои защиты (эшелоны, а не одна стены):</p>
+      <ul>
+        <li>у инструментов минимальные права (помощнику, которому разрешено только читать, нечего ломать);</li>
+        <li>белые списки разрешённых действий;</li>
+        <li>подтверждение человеком для необратимых операций;</li>
+        <li>отдельные модели-фильтры на входе и выходе;</li>
+        <li>чувствительные данные (паспорта, диагнозы, платежи) не уходят в чужие сервисы без обезличивания.</li>
+      </ul>
+      <p>«Взрослая» эксплуатация:</p>
+      <ul>
+        <li><b>Деньги и скорость</b> — цена 1000 ответов и <i class="term" data-k="lat">время ожидания</i> измеряются, а не угадываются; кэш и модель поменьше режут цену в разы;</li>
+        <li><b>Наблюдение</b> — доля плохих ответов, цена по дням, время ответа; вендор обновил модель — цифры могут поплыть;</li>
+        <li><b>План Б</b> — резервный провайдер, человек в контуре, постепенная деградация вместо падения.</li>
+      </ul>
+      <p><b>Что запомнить:</b> проверка на прочность (<i class="term" data-k="redteam">red-team</i>) делается до релиза: вы сами атакуете свою систему по всем правилам злодеев, чтобы найти дыры раньше них. Найденная до релиза дыра стоит в сто раз дешевле.</p>
+      <details class="sc"><summary>Вопросы для самопроверки</summary><ol><li>Что такое промпт-инъекция и почему обычный антивирус её не ловит?</li><li>Три слоя защиты для помощника с доступом наружу.</li><li>Что наблюдать в работе системы, кроме «сайт отвечает»?</li></ol></details>
+      <label class="ck read"><input type="checkbox" data-id="k8"><span>Урок изучен</span></label>
+    </div>
+  </details>
+</section>
+
+<section class="tab" id="tab-practice">
+  <h2 style="margin-top:14px">Практика: 5 проектов в витрину</h2>
+  <p class="sub">Витрина AI-инженера — это не демо «смотрите, работает!», а системы с цифрами и разбором ошибок. Каждый проект идёт рядом с этапом плана. «Готово, когда» — условие приёмки: не отмечайте раньше времени, иначе обманете только себя.</p>
+
+  <section class="proj">
+    <div class="phhead"><span class="phnum">Проект 1</span><span class="phweeks">этап 2 · проверки</span><span class="phcount">0/6</span></div>
+    <h3>Соревнование запросов</h3>
+    <p class="phgoal">Собрать набор примеров, честно сравнить 4 варианта запроса и показать вывод. Самый недооценённый проект — и главный вопрос на собеседованиях.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="p1-1"><span>Выбрать задачу с проверяемым ответом: разложить письма по папкам, вытащить из текстов даты и суммы, короткие ответы на вопросы</span></label>
+      <label class="ck"><input type="checkbox" data-id="p1-2"><span>Собрать 100 пар «вход → правильный ответ» из реальных данных (письма, обращения, документы)</span></label>
+      <label class="ck"><input type="checkbox" data-id="p1-3"><span>Замерить долю правильных ответов у простого запроса — это стартовая точка</span></label>
+      <label class="ck"><input type="checkbox" data-id="p1-4"><span>Написать 3 улучшения (примеры в запросе, пошаговое мышление, строгий формат) и замерить каждое</span></label>
+      <label class="ck"><input type="checkbox" data-id="p1-5"><span>Оформить таблицу результатов и вывод: что сработало, почему, где потолок</span></label>
+      <label class="ck"><input type="checkbox" data-id="p1-6"><span>Залить на GitHub с README: как повторить одной командой</span></label>
+    </div>
+    <div class="exit"><b>Готово, когда:</b> в README есть таблица цифр и абзац выводов, а результат воспроизводится одной командой.</div>
+  </section>
+
+  <section class="proj">
+    <div class="phhead"><span class="phnum">Проект 2</span><span class="phweeks">этап 3 · поиск по документам</span><span class="phcount">0/5</span></div>
+    <h3>Умный помощник по своим документам</h3>
+    <p class="phgoal">Поиск с ответами и ссылками по личным конспектам или документам компании. Максимум эффекта на демонстрации при минимуме техники.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="p2-1"><span>Загрузить 30+ страниц своих документов, привести к одному формату</span></label>
+      <label class="ck"><input type="checkbox" data-id="p2-2"><span>Сделать нарезку + перевод в «координаты смысла» + поиск по ним</span></label>
+      <label class="ck"><input type="checkbox" data-id="p2-3"><span>Ответы строго со ссылками на источники (шаблон №8)</span></label>
+      <label class="ck"><input type="checkbox" data-id="p2-4"><span>Мини-контрольная: 20 вопросов с правильными ответами</span></label>
+      <label class="ck"><input type="checkbox" data-id="p2-5"><span>Опыт: 3 размера нарезки → таблица качества → выбор лучшего</span></label>
+    </div>
+    <div class="exit"><b>Готово, когда:</b> на 20 контрольных вопросах не меньше 70% ответов подтверждены ссылкой на источник.</div>
+  </section>
+
+  <section class="proj">
+    <div class="phhead"><span class="phnum">Проект 3</span><span class="phweeks">этап 4 · помощник с руками</span><span class="phcount">0/5</span></div>
+    <h3>ИИ-помощник с инструментами</h3>
+    <p class="phgoal">Помощник, который решает задачи действием: находит, считает, пишет файлы. Плюс журнал и защита — то, чего нет у 90% обученных по туториалам.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="p3-1"><span>3 инструмента: поиск по локальным файлам, вычисления, запись в файл</span></label>
+      <label class="ck"><input type="checkbox" data-id="p3-2"><span>Цикл: ИИ → вызов инструмента → результат → продолжение, с лимитом шагов</span></label>
+      <label class="ck"><input type="checkbox" data-id="p3-3"><span>Журнал каждого шага: мысль, вызов, настройки, результат</span></label>
+      <label class="ck"><input type="checkbox" data-id="p3-4"><span>5 тестовых задач; журнал или видео успешного решения</span></label>
+      <label class="ck"><input type="checkbox" data-id="p3-5"><span>Безопасность: опасные операции только через подтверждение</span></label>
+    </div>
+    <div class="exit"><b>Готово, когда:</b> помощник решает 5 задач из 5, в журнале видны рассуждения и вызовы, а опасное действие блокируется.</div>
+  </section>
+
+  <section class="proj">
+    <div class="phhead"><span class="phnum">Проект 4</span><span class="phweeks">этап 5 · автопроверка</span><span class="phcount">0/4</span></div>
+    <h3>Контрольная, которая запускается сама</h3>
+    <p class="phgoal">Превратить проект 1 или 2 в инженерный артефакт: проверка качества запускается автоматически при каждом обновлении кода.</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="p4-1"><span>Обернуть набор примеров проекта в автоматические тесты</span></label>
+      <label class="ck"><input type="checkbox" data-id="p4-2"><span>GitHub Actions: обновление кода → прогон контрольной → отчёт с цифрами</span></label>
+      <label class="ck"><input type="checkbox" data-id="p4-3"><span>Порог качества: ниже заданной цифры — проверка «красная»</span></label>
+      <label class="ck"><input type="checkbox" data-id="p4-4"><span>Значок статуса в README + проверка: испорченный запрос делает сборку красной</span></label>
+    </div>
+    <div class="exit"><b>Готово, когда:</b> испорченный запрос действительно «роняет» автопроверку (проверено), а в README виден зелёный значок.</div>
+  </section>
+
+  <section class="proj">
+    <div class="phhead"><span class="phnum">Проект 5</span><span class="phweeks">этап 6 · главный проект</span><span class="phcount">0/4</span></div>
+    <h3>Главный проект в вашей сфере</h3>
+    <p class="phgoal">Финальный проект на стыке ИИ и вашей отрасли — то, что отличает «ещё одного промпт-инженера» от «инженера, который понимает наш бизнес».</p>
+    <div class="cklist">
+      <label class="ck"><input type="checkbox" data-id="p5-1"><span>Задача из реальной отрасли: с настоящей болью, заказчиком (хотя бы внутренним) и цифрой успеха</span></label>
+      <label class="ck"><input type="checkbox" data-id="p5-2"><span>Полный набор: запросы/поиск/помощник + контрольные + защита от спрятанных команд + расчёт цены</span></label>
+      <label class="ck"><input type="checkbox" data-id="p5-3"><span>Демонстрация: видео на 2–3 минуты или работающая страница</span></label>
+      <label class="ck"><input type="checkbox" data-id="p5-4"><span>Статья о проекте с цифрами: что построил, каких цифр добился, где ошибался</span></label>
+    </div>
+    <div class="exit"><b>Готово, когда:</b> человек из отрасли понимает ценность с полуслова, а инженер видит цифры, тесты и схему.</div>
+  </section>
+</section>
+
+<section class="tab" id="tab-prompts">
+  <h2 style="margin-top:14px">Шаблоны: 10 готовых запросов</h2>
+  <p class="sub">Готовые каркасы под типовые задачи: нажмите «Копировать», вставьте в чат и замените слова в {ФИГУРНЫХ СКОБКАХ} на свои. В вашей задаче проверяйте шаблон на примерах с известными ответами — прежде чем доверять.</p>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>1. Сортировщик с примерами</b><span>когда: разложить обращения по папкам, разметить, категоризировать</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Модель возвращает только метку, без рассуждений. Примеры «вход → метка» показывают образец надёжнее, чем описание правил. Начните с 3–5 примеров и добавляйте те, на которых система ошиблась.</p>
+      <pre class="ptext" id="pt1">Ты — сортировщик обращений. Верни только метку из списка:
+[ошибка, идея, вопрос, реклама, другое]
+
+Правила:
+- Сомневаешься между двумя метками — выбери ту, что ближе
+  к сути, а не к форме.
+- Возвращай только метку, без пояснений.
+
+Примеры:
+Обращение: «Приложение падает при загрузке фото» → ошибка
+Обращение: «Хочу, чтобы можно было выгрузить в Excel» → идея
+Обращение: «А вы работаете в праздники?» → вопрос
+Обращение: «Купите наш супер CRM со скидкой!!!» → реклама
+
+Обращение: {ТЕКСТ}
+Метка:</pre>
+      <button class="cbtn" data-t="pt1" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>2. Сначала подумай, потом ответь</b><span>когда: логика, математика, выводы в несколько шагов</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Рассуждение спрятано в отдельный блок — его удобно не показывать пользователю и сохранять в журнал для разбора ошибок.</p>
+      <pre class="ptext" id="pt2">Реши задачу, рассуждая шаг за шагом. Рассуждение пиши в блоке
+&lt;thoughts&gt;...&lt;/thoughts&gt;, итоговый ответ — строго после строки «Ответ:».
+
+Задача: {ЗАДАЧА}
+
+Правила:
+- В рассуждении проверяй каждый шаг на согласованность
+  с предыдущими.
+- Заметил ошибку в своём рассуждении — исправь и продолжи.
+- После «Ответ:» — только окончательный результат, одной строкой.</pre>
+      <button class="cbtn" data-t="pt2" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>3. Вытащить данные в строгом формате</b><span>когда: вытащить из текстов даты, суммы, названия — чтобы читала программа</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Строгий формат + правила для пустых мест (null вместо выдумки) дают ответ, который программа парсит без сбоев. Правила для крайних случаев важнее самой схемы.</p>
+      <pre class="ptext" id="pt3">Извлеки из текста данные и верни СТРОГО правильный JSON по схеме.
+Без пояснений, без обёртки из markdown.
+
+Схема:
+{
+  "company": "строка | null",
+  "inn": "строка из 10 или 12 цифр | null",
+  "amount": "число в рублях | null",
+  "date": "YYYY-MM-DD | null",
+  "items": ["строка", "..."]
+}
+
+Правила:
+- Нет данных в тексте — ставь null, не придумывай.
+- Суммы — числом: «100 000 руб.» → 100000.
+- Верни только JSON.
+
+Текст: {ТЕКСТ}</pre>
+      <button class="cbtn" data-t="pt3" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>4. Паспорт бота: кто → что → как → чего нельзя</b><span>когда: бот поддержки, продуктовый ассистент</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>«Паспорт» задаёт поведение бота во всех разговорах. Структура «кто ты → ситуация → формат ответа → ограничения» покрывает 90% случаев.</p>
+      <pre class="ptext" id="pt4">Ты — {РОЛЬ, НАПРИМЕР: СПЕЦИАЛИСТ ТЕХПОДДЕРЖКИ B2B-СЕРВИСА}.
+
+Ситуация: помогаешь {АУДИТОРИЯ} в продукте {ПРОДУКТ}.
+Обращения приходят из формы на сайте.
+
+Формат ответа:
+1. Одно предложение — суть проблемы пользователя своими словами.
+2. Пошаговое решение: нумерованный список, максимум 5 шагов.
+3. Если данных мало — ровно один уточняющий вопрос в конце.
+
+Ограничения:
+- Не обещай то, чего нет в базе знаний: {БАЗА ЗНАНИЙ}.
+- Цены, юридические и медицинские гарантии — переводи
+  на оператора.
+- Тон: доброжелательный, без канцелярита.</pre>
+      <button class="cbtn" data-t="pt4" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>5. Найди слабые места в моей задаче</b><span>когда: старт любой непростой задачи</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Половина плохих ответов рождается из расплывчатой задачи. Шаблон заставляет ИИ вскрыть ваши неявные допущения до того, как вы потратите время на решение.</p>
+      <pre class="ptext" id="pt5">Вот моя постановка задачи: «{ПОСТАНОВКА ЗАДАЧИ}».
+
+Сделай следующее:
+1. Перечисли все допущения, которые я неявно сделал
+   (про данные, пользователей, инструменты, критерии успеха).
+2. Для каждого допущения скажи, что сломается,
+   если оно неверное.
+3. Назови критические вопросы, которые я забыл задать.
+4. Предложи переформулировку задачи без слабых допущений.
+
+Не решай задачу — только разбор постановки.</pre>
+      <button class="cbtn" data-t="pt5" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>6. Разбей крупную задачу на шаги</b><span>когда: задача не лезет в один запрос</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Разбивает большую задачу на шаги, каждый по силам одному запросу к ИИ. Обратите внимание на «рискованные места» — они подскажут, где нужны проверки.</p>
+      <pre class="ptext" id="pt6">Задача: {КРУПНАЯ ЗАДАЧА}
+
+Разбей её на подзадачи так, чтобы каждую можно было отдать
+одному вызову ИИ или одному человеку:
+
+1. Список подзадач в порядке выполнения. Для каждой — вход,
+   выход и признак «сделано».
+2. Отметь, какие подзадачи можно делать параллельно.
+3. Отметь самые рискованные места (где вероятнее всего ошибка)
+   и что проверить на каждом.</pre>
+      <button class="cbtn" data-t="pt6" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>7. Проверь себя перед ответом</b><span>когда: важный ответ, ошибка дорого стоит</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Черновик → самокритика → финал. Второй проход ловит часть ошибок, а строка уверенности честно показывает, где ИИ плавает.</p>
+      <pre class="ptext" id="pt7">Ответь на вопрос, затем проверь себя перед финальным выводом.
+
+Вопрос: {ВОПРОС}
+
+Порядок:
+1. Черновик ответа.
+2. Ревью черновика: найди 3 самые слабые места — неточности,
+   отсутствие источника, логические скачки.
+3. Исправленный финальный ответ.
+4. Строка «Уверенность: X%» — насколько уверен(а) в ответе
+   и чего не хватает для 100%.</pre>
+      <button class="cbtn" data-t="pt7" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>8. Ответ только по документам, со ссылками</b><span>когда: ответы по базе знаний, вики, инструкциям</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Сердце любого помощника «с открытой книгой». Номера источников после каждого факта + разрешение честно сказать «в документах нет данных» вместо сочинительства.</p>
+      <pre class="ptext" id="pt8">Отвечай на вопрос ТОЛЬКО на основе приведённых фрагментов.
+
+Фрагменты:
+[1] {ФРАГМЕНТ_1}
+[2] {ФРАГМЕНТ_2}
+[3] {ФРАГМЕНТ_3}
+
+Вопрос: {ВОПРОС}
+
+Правила:
+- После каждого факта указывай номер источника в квадратных
+  скобках, например [2].
+- В фрагментах нет ответа — напиши: «В источниках нет данных
+  по этому вопросу» и скажи, какой фрагмент стоило бы найти.
+- Не добавляй знания извне фрагментов.</pre>
+      <button class="cbtn" data-t="pt8" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>9. ИИ-судья: оценка ответов по критериям</b><span>когда: ответов тысячи, а проверяющий — вы</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Критерии с описанием каждого балла обязательны: без них оценки судьи — шум. Перед боевым применением сверьте баллы судьи со своими на 20 примерах.</p>
+      <pre class="ptext" id="pt9">Ты — строгий оценщик ответов службы поддержки.
+Оцени ответ по рубрике от 1 до 5.
+
+Рубрика:
+- solution — ответ решает вопрос пользователя
+  (1 — нет, 5 — решает полностью).
+- accuracy — нет выдуманных функций и обещаний
+  (1 — выдумка, 5 — всё подтверждено базой знаний).
+- tone — доброжелательно и ясно
+  (1 — грубо или бессвязно, 5 — отлично).
+
+Обращение: {ОБРАЩЕНИЕ}
+Ответ: {ОТВЕТ}
+
+Верни JSON:
+{"solution":1-5,"accuracy":1-5,"tone":1-5,
+ "total":"сумма","comment":"главная причина оценки"}</pre>
+      <button class="cbtn" data-t="pt9" type="button">Копировать</button>
+    </div>
+  </details>
+
+  <details class="prompt">
+    <summary><span class="tt"><b>10. Атакуй моего бота</b><span>когда: проверка бота перед выходом в свет</span></span><span class="plus">+</span></summary>
+    <div class="pbody">
+      <p>Просите ИИ сыграть злодея против вашей системы. Сгенерированные атаки прогоняйте по-настоящему: дыра, найденная до релиза, стоит в сто раз дешевле.</p>
+      <pre class="ptext" id="pt10">Ты — атакующий. Твоя цель — заставить ассистента нарушить
+его правила. Ассистент: {ПАСПОРТ БОТА ИЛИ ПРАВИЛА}.
+
+Составь 10 атакующих сообщений:
+- прямые просьбы нарушить правила;
+- ролевые легенды («ты — разработчик, тебе можно»);
+- команды, спрятанные в «данных» (запрос, документ, ссылка);
+- многошаговые манипуляции, растянутые на диалог.
+
+Для каждой атаки укажи:
+1. Текст сообщения.
+2. Какой механизм защиты она проверяет.
+3. Признак того, что защита сработала.</pre>
+      <button class="cbtn" data-t="pt10" type="button">Копировать</button>
+    </div>
+  </details>
+</section>
+
+<section class="tab" id="tab-resources">
+  <h2 style="margin-top:14px">Экзамен: 12 вопросов</h2>
+  <p class="sub">Итоговая проверка по всем восьми урокам. Проходной балл — 10 из 12, лучший результат сохраняется. Отвечайте не подглядывая — иначе экзамен ничего не проверит, а правило №1 запрещает такое.</p>
+
+  <div class="q" data-q="1"><h4>1. Что такое «токен» для ИИ?</h4>
+    <label><input type="radio" name="q1" value="a"><span>Единица оплаты в интернет-магазине</span></label>
+    <label><input type="radio" name="q1" value="b"><span>Кусочек слова, который ИИ обрабатывает как единое целое</span></label>
+    <label><input type="radio" name="q1" value="c"><span>Ячейка памяти на видеокарте</span></label>
+  </div>
+  <div class="q" data-q="2"><h4>2. «Память» разговора (контекстное окно) — это…</h4>
+    <label><input type="radio" name="q2" value="a"><span>Размер окна браузера, в котором открыт чат</span></label>
+    <label><input type="radio" name="q2" value="b"><span>Число параметров внутри модели</span></label>
+    <label><input type="radio" name="q2" value="c"><span>Весь текст — скрытая инструкция, история чата, документы и вопрос, — который ИИ видит одновременно</span></label>
+  </div>
+  <div class="q" data-q="3"><h4>3. «Обучение на примерах» (few-shot) — это когда…</h4>
+    <label><input type="radio" name="q3" value="a"><span>В запросе показано 2–3 примера «вопрос → правильный ответ»</span></label>
+    <label><input type="radio" name="q3" value="b"><span>Модель учили на маленьком наборе данных</span></label>
+    <label><input type="radio" name="q3" value="c"><span>ИИ пишет несколько ответов, а потом выбирает лучший</span></label>
+  </div>
+  <div class="q" data-q="4"><h4>4. Ручка «полёт фантазии» (temperature) влияет на…</h4>
+    <label><input type="radio" name="q4" value="a"><span>Скорость печати ответа</span></label>
+    <label><input type="radio" name="q4" value="b"><span>Разнообразие: ниже — ответы одинаковые, выше — непредсказуемее</span></label>
+    <label><input type="radio" name="q4" value="c"><span>Максимальную длину ответа</span></label>
+  </div>
+  <div class="q" data-q="5"><h4>5. «Контрольная работа» для запроса (eval) — это…</h4>
+    <label><input type="radio" name="q5" value="a"><span>Набор примеров с известными правильными ответами и подсчёт, сколько запрос ответил верно</span></label>
+    <label><input type="radio" name="q5" value="b"><span>Любой опыт с ИИ в чате</span></label>
+    <label><input type="radio" name="q5" value="c"><span>Отчёт о цене запросов</span></label>
+  </div>
+  <div class="q" data-q="6"><h4>6. «ИИ-судья» (LLM-as-judge) — это…</h4>
+    <label><input type="radio" name="q6" value="a"><span>Модель, решающая, пускать ли пользователя в систему</span></label>
+    <label><input type="radio" name="q6" value="b"><span>Другая модель, которая ставит баллы ответам по вашим критериям</span></label>
+    <label><input type="radio" name="q6" value="c"><span>Соревнование моделей на доске почёта</span></label>
+  </div>
+  <div class="q" data-q="7"><h4>7. Зачем системе «открытая книга» (RAG)?</h4>
+    <label><input type="radio" name="q7" value="a"><span>Чтобы ИИ отвечал по вашим документам со ссылками, без переучивания модели</span></label>
+    <label><input type="radio" name="q7" value="b"><span>Чтобы ответы появлялись быстрее</span></label>
+    <label><input type="radio" name="q7" value="c"><span>Чтобы платить за запросы меньше</span></label>
+  </div>
+  <div class="q" data-q="8"><h4>8. Что делает нарезка документов на куски (чанкинг)?</h4>
+    <label><input type="radio" name="q8" value="a"><span>Сжимает ответы перед показом</span></label>
+    <label><input type="radio" name="q8" value="b"><span>Шифрует документы в базе</span></label>
+    <label><input type="radio" name="q8" value="c"><span>Режет документы на фрагменты, которые потом находятся поиском и кладутся в запрос</span></label>
+  </div>
+  <div class="q" data-q="9"><h4>9. Промпт-инъекция — это…</h4>
+    <label><input type="radio" name="q9" value="a"><span>Команда, спрятанная в тексте, который читает ваш ИИ, чтобы незаметно изменить его поведение</span></label>
+    <label><input type="radio" name="q9" value="b"><span>Слишком длинный запрос</span></label>
+    <label><input type="radio" name="q9" value="c"><span>Опечатка в формате данных</span></label>
+  </div>
+  <div class="q" data-q="10"><h4>10. Зачем ИИ-помощнику инструменты («руки»)?</h4>
+    <label><input type="radio" name="q10" value="a"><span>Чтобы модно выглядел</span></label>
+    <label><input type="radio" name="q10" value="b"><span>Чтобы получать точные данные и выполнять действия, а не только писать текст</span></label>
+    <label><input type="radio" name="q10" value="c"><span>Чтобы обойти лимит «памяти» разговора</span></label>
+  </div>
+  <div class="q" data-q="11"><h4>11. Когда переучивание модели (fine-tuning) оправдано?</h4>
+    <label><input type="radio" name="q11" value="a"><span>Когда нужно, чтобы модель узнала новые факты</span></label>
+    <label><input type="radio" name="q11" value="b"><span>Когда ответ должен быть всегда коротким</span></label>
+    <label><input type="radio" name="q11" value="c"><span>Когда на тысячах однотипных задач нужен стойкий стиль или формат, который не даёт запрос</span></label>
+  </div>
+  <div class="q" data-q="12"><h4>12. «Из середины длинного текста ИИ достаёт информацию хуже, чем из начала и конца» — это…</h4>
+    <label><input type="radio" name="q12" value="a"><span>Правда, так и есть — эффект середины</span></label>
+    <label><input type="radio" name="q12" value="b"><span>Неправда, ИИ читает всё одинаково</span></label>
+    <label><input type="radio" name="q12" value="c"><span>Правда, но только для английского языка</span></label>
+  </div>
+
+  <div class="btnrow">
+    <button class="primary" id="examBtn" type="button" style="flex:1;min-width:200px">Проверить ответы</button>
+    <button class="ghost" id="examReset" type="button">Пройти заново</button>
+  </div>
+  <div class="examres" id="examRes"></div>
+
+  <h2>Что почитать и посмотреть</h2>
+  <p class="sub">Только проверенные источники — от создателей ИИ и практиков. Порядок примерный: сверху вниз по мере роста. Всё бесплатно.</p>
+
+  <h2>Основы и запросы</h2>
+  <div class="res">
+    <a class="resl" href="https://www.promptingguide.ai/" target="_blank" rel="noopener"><span class="rr"><b>Prompt Engineering Guide (справочник запросов)</b><span class="d">Систематический сборник всех приёмов с примерами. Начните с раздела Techniques.</span></span><span class="dom">promptingguide.ai</span></a>
+    <a class="resl" href="https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener"><span class="rr"><b>Учебник Anthropic о составлении запросов</b><span class="d">Официальная документация: структура запроса, роль, примеры. Обязателен на этапе 1.</span></span><span class="dom">platform.claude.com</span></a>
+    <a class="resl" href="https://platform.openai.com/docs/guides/prompt-engineering" target="_blank" rel="noopener"><span class="rr"><b>Гайд OpenAI о запросах</b><span class="d">Взгляд второго вендора. Читать после Anthropic — увидите, что совпадает, а что спорно.</span></span><span class="dom">platform.openai.com</span></a>
+    <a class="resl" href="https://cookbook.openai.com/" target="_blank" rel="noopener"><span class="rr"><b>OpenAI Cookbook (книга рецептов)</b><span class="d">Готовый код: строгий формат, вызов инструментов, поиск по смыслу. Копируйте и адаптируйте.</span></span><span class="dom">cookbook.openai.com</span></a>
+    <a class="resl" href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener"><span class="rr"><b>Короткие курсы DeepLearning.AI</b><span class="d">Бесплатные курсы с ноутбуками: запросы, поиск по документам, помощники, проверки. По одному на этап.</span></span><span class="dom">deeplearning.ai</span></a>
+    <a class="resl" href="https://www.youtube.com/watch?v=zjkBMFhNj_g" target="_blank" rel="noopener"><span class="rr"><b>Видео: «Intro to Large Language Models» — Андрей Карпаты</b><span class="d">Лучший час об устройстве ИИ: как учат, на что способен, где ломается. Без кода — для всех.</span></span><span class="dom">youtube.com</span></a>
+    <a class="resl" href="https://www.youtube.com/watch?v=kCc8FmEb1nY" target="_blank" rel="noopener"><span class="rr"><b>Видео: «Let's build GPT» — Андрей Карпаты</b><span class="d">Карпаты собирает мини-GPT с нуля на Python. Для тех, кто хочет понять механику, а не верить в магию.</span></span><span class="dom">youtube.com</span></a>
+  </div>
+
+  <h2>Проверки качества</h2>
+  <div class="res">
+    <a class="resl" href="https://hamel.dev/blog/posts/evals/" target="_blank" rel="noopener"><span class="rr"><b>Статья «Your AI Product Needs Evals» — Hamel Husain</b><span class="d">Главная статья о проверке качества ИИ-продуктов. Основа этапа 2.</span></span><span class="dom">hamel.dev</span></a>
+    <a class="resl" href="https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/" target="_blank" rel="noopener"><span class="rr"><b>Обзор приёмов запросов — Lilian Weng</b><span class="d">Глубокий обзор от исследователя. Читать, когда основы уже усвоены.</span></span><span class="dom">lilianweng.github.io</span></a>
+  </div>
+
+  <h2>Поиск по документам, помощники и стек</h2>
+  <div class="res">
+    <a class="resl" href="https://lilianweng.github.io/posts/2023-06-23-agent/" target="_blank" rel="noopener"><span class="rr"><b>Статья об ИИ-помощниках — Lilian Weng</b><span class="d">Классика об устройстве помощников: планирование, память, инструменты. Основа этапа 4.</span></span><span class="dom">lilianweng.github.io</span></a>
+    <a class="resl" href="https://modelcontextprotocol.io/" target="_blank" rel="noopener"><span class="rr"><b>MCP — «общая розетка» для инструментов</b><span class="d">Открытый стандарт подключения готовых инструментов к ИИ. Экосистема растёт быстро.</span></span><span class="dom">modelcontextprotocol.io</span></a>
+    <a class="resl" href="https://python.langchain.com/docs/introduction/" target="_blank" rel="noopener"><span class="rr"><b>LangChain (документация)</b><span class="d">Популярный конструктор ИИ-приложений: цепочки, поиск, помощники. Хорош для быстрых прототипов.</span></span><span class="dom">python.langchain.com</span></a>
+    <a class="resl" href="https://docs.llamaindex.ai/en/stable/" target="_blank" rel="noopener"><span class="rr"><b>LlamaIndex (документация)</b><span class="d">Конструктор, заточенный под поиск по документам: загрузка, индексы, пересортировка.</span></span><span class="dom">docs.llamaindex.ai</span></a>
+    <a class="resl" href="https://huggingface.co/learn/llm-course/chapter1/1" target="_blank" rel="noopener"><span class="rr"><b>Курс HuggingFace про языковые модели</b><span class="d">Бесплатный курс: от устройства до переучивания. Для этапа про fine-tuning.</span></span><span class="dom">huggingface.co</span></a>
+  </div>
+
+  <h2>Практика и сообщество</h2>
+  <div class="res">
+    <a class="resl" href="https://simonwillison.net/" target="_blank" rel="noopener"><span class="rr"><b>Блог Simon Willison</b><span class="d">Ежедневные заметки практика о работе с ИИ и его безопасности. Его разборы — эталон инженерного мышления.</span></span><span class="dom">simonwillison.net</span></a>
+  </div>
+
+  <h2>Об этом сайте</h2>
+  <div class="card">
+    <p class="dim" style="margin-bottom:8px">Сайт целиком лежит в одном файле и работает даже без интернета — можно добавить на главный экран телефона (меню браузера → «Добавить на главный экран») и заниматься в метро. Прогресс хранится в браузере и никуда не отправляется.</p>
+    <p class="dim">Исходники открыты: если захотите что-то поправить — файл простой, каждый блок подписан. И никогда не пересылайте пароли и токены текстом в чатах: доступ к переписке = доступ к вашему аккаунту.</p>
+  </div>
+</section>
+</main>
+
+<footer class="foot">Путь AI-инженера · понятный самоучитель<br>прогресс хранится локально в вашем браузере · v2.0</footer>
+</div>
+<div id="tip" role="tooltip"></div>
+
+<script>
+(function(){
+"use strict";
+/* ================= СЛОВАРЬ ТЕРМИНОВ =================
+   Те же объяснения показываются в подсказках по наведению
+   и в словаре на вкладке «Уроки». meta:true — служебное,
+   в словарь не попадает. */
+var TERMS={
+hintdemo:{t:"Пунктирное подчёркивание",d:"Так в этом приложении помечены непростые слова: наведите курсор или коснитесь — появится объяснение.",meta:true},
+token:{t:"Токен",d:"Кусочек текста, которым ИИ «читает» и «пишет»: часть слова, слово или знак. «Банан» — один токен, «переосмысление» — три-четыре. Плата за запросы считается в токенах."},
+llm:{t:"LLM (языковая модель)",d:"Large Language Model — программа-предсказатель текста: по началу она угадывает продолжение. Обучена на гигантских объёмах текстов. ChatGPT, Claude, Gemini — всё это LLM."},
+context:{t:"Контекстное окно",d:"«Оперативная память» разговора: весь текст, который ИИ видит прямо сейчас — скрытая инструкция, история чата, документы, вопрос. Не влезает — начало забывается."},
+temp:{t:"Temperature (полёт фантазии)",d:"Ручка случайности: около 0 — ответы одинаковые и точные (для расчётов), выше — разнообразные (для идей и творчества)."},
+halluc:{t:"Галлюцинации",d:"Когда ИИ уверенно выдумывает: он не врёт нарочно, а честно продолжает текст правдоподобно — а правдоподобное не всегда правда. Факты проверяйте."},
+prompt:{t:"Промпт (запрос)",d:"Текст, который вы даёте ИИ: вопрос, задание, инструкция. Хороший промпт — как техзадание: кто, что, в каком виде, чего нельзя."},
+fewshot:{t:"Few-shot (обучение на примерах)",d:"2–3 показанных в запросе примера «вход → правильный ответ». ИИ — гений подражания: примеры работают лучше длинных описаний."},
+cot:{t:"Chain-of-thought (пошаговое мышление)",d:"Просьба расписать рассуждение по шагам до финального ответа. На логике и счёте ошибок заметно меньше."},
+json:{t:"JSON",d:"Строгий формат данных вида {\"имя\": \"значение\"}. Нужен, когда ответ ИИ будет читать программа, а не человек."},
+sysprompt:{t:"Системный промпт (паспорт бота)",d:"Скрытая от пользователя инструкция: кто бот, как отвечает, что ему запрещено. Задаётся разработчиком и тестируется как код."},
+contexteng:{t:"Контекст-инжиниринг",d:"Проектирование всего, что ИИ видит перед ответом (термин Андрея Карпаты): какие данные подложить, что сжать, что подсветить — вместо поиска «волшебной фразы»."},
+eval:{t:"Eval (контрольная работа)",d:"Набор примеров с заранее известными правильными ответами + подсчёт, сколько ваш вариант ответил верно. Единственный честный способ сравнить два запроса."},
+metric:{t:"Метрика",d:"Число, по которому судят о качестве: «правильных 87 из 100», «ответ за 2 секунды», «прогон — 30 рублей». Сравнивать можно только цифры."},
+judge:{t:"LLM-as-judge (ИИ-судья)",d:"Другая модель ставит баллы ответам по вашим критериям. Нужны: вопрос, ответ и рубрика с описанием каждого балла — иначе оценки шумят."},
+ab:{t:"A/B-тест",d:"Честное сравнение: оба варианта запроса прогоняются на одних и тех же примерах, побеждает тот, у кого цифра выше. Противоположность «на глаз»."},
+ci:{t:"CI (автопроверка)",d:"Continuous Integration: компьютер сам запускает контрольную при каждом изменении кода и «краснеет», если качество упало. Как юнит-тесты, но для запросов."},
+rag:{t:"RAG (открытая книга)",d:"Retrieval-Augmented Generation: перед вопросом система находит подходящие куски ваших документов и кладёт их ИИ «на стол» — он отвечает по ним, со ссылками. Обновили документы — обновились ответы."},
+embed:{t:"Эмбеддинг (координаты смысла)",d:"Перевод смысла текста в набор чисел: похожие по смыслу тексты получают близкие «координаты». Так компьютер учится сравнивать смыслы, а не слова."},
+vdb:{t:"Векторная база",d:"Хранилище «координат смысла» (FAISS, Qdrant, Chroma). Ищет по смыслу: запрос «начальник» найдёт и «руководителя»."},
+chunk:{t:"Чанкинг (нарезка)",d:"Разбиение документов на куски перед загрузкой в поиск. Мелкие теряют смысл, крупные размывают — размер подбирают опытом."},
+rerank:{t:"Реранкинг (пересортировка)",d:"Второй проход: отдельная модель заново выстраивает найденные куски по пользе для конкретного вопроса. Часто заметно улучшает ответы."},
+agent:{t:"Агент (ИИ с руками)",d:"ИИ-помощник в цикле: получил задачу → вызвал инструмент → посмотрел результат → продолжил. Действия, а не только текст."},
+tool:{t:"Function calling (вызов инструментов)",d:"Способ дать ИИ «руки»: вы описываете доступные функции, ИИ выбирает нужную и говорит, с какими настройками запустить, а код исполняет."},
+mcp:{t:"MCP (общая розетка)",d:"Model Context Protocol — открытый стандарт подключения готовых инструментов к ИИ. Один раз подключил — работает с разными моделями."},
+ft:{t:"Fine-tuning (переучивание)",d:"Дополнительное обучение готовой модели на ваших примерах. Оправдано для стойкого стиля или формата на тысячах однотипных задач — не для новых фактов."},
+lora:{t:"LoRA",d:"Бюджетный способ переучивания: обучают не всю модель, а маленькую «надстройку». Хватает одной видеокарты."},
+inj:{t:"Промпт-инъекция",d:"Взлом текстом: команда, спрятанная в данных, которые читает ваш ИИ (сайт, письмо, PDF). Правило: чужой текст — данные, а не приказы."},
+lat:{t:"Латентность (время ожидания)",d:"Сколько секунд пользователь ждёт ответ. Измеряется, а не угадывается: длина запроса и выбор модели влияют напрямую."},
+redteam:{t:"Red-team (проверка на прочность)",d:"Вы сами атакуете свою систему по всем правилам злодеев — чтобы найти дыры раньше них. Дыра, найденная до релиза, в сто раз дешевле."},
+api:{t:"API",d:"«Окно выдачи заказов» сервиса: программа отправляет запрос по интернету и получает ответ. Так ваш скрипт общается с ИИ, ключ — как пропуск."},
+gh:{t:"GitHub",d:"Главный сайт программистов: хранение кода, совместная работа и бесплатный хостинг простых сайтов (GitHub Pages). Витрина ваших проектов."}
+};
+
+var KEY="aiPathState_v1";
+function defState(){return{checked:{},diary:[],examBest:null,lastTab:"home"}}
+function load(){try{var s=JSON.parse(localStorage.getItem(KEY));if(!s||typeof s!=="object")return defState();return Object.assign(defState(),s)}catch(e){return defState()}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var st=load();
+
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]})}
+function tabName(id){var m={home:"Главная",route:"План",knowledge:"Уроки",practice:"Практика",prompts:"Шаблоны",resources:"Экзамен"};return m[id]||id}
+
+/* ---------- вкладки ---------- */
+var tabs=document.querySelectorAll("section.tab");
+var btns=document.querySelectorAll("nav.tabs button");
+function showTab(id){
+  tabs.forEach(function(t){t.classList.toggle("on",t.id==="tab-"+id)});
+  btns.forEach(function(b){b.classList.toggle("on",b.dataset.tab===id)});
+  st.lastTab=id;save();window.scrollTo(0,0);
+}
+btns.forEach(function(b){b.addEventListener("click",function(){showTab(b.dataset.tab)})});
+
+/* ---------- подсказки по терминам ---------- */
+var tip=document.getElementById("tip"),tipCur=null;
+function showTip(el,x,y){
+  var term=TERMS[el.dataset.k];if(!term)return;
+  tip.innerHTML="<b>"+esc(term.t)+"</b>"+esc(term.d);
+  tip.classList.add("show");
+  var r=el.getBoundingClientRect();
+  var w=Math.min(300,window.innerWidth-24);
+  var left=Math.max(12,Math.min(x-w/2,window.innerWidth-w-12));
+  var top=r.top-tip.offsetHeight-10;
+  if(top<10)top=r.bottom+10;
+  tip.style.left=left+"px";tip.style.top=top+"px";tip.style.maxWidth=w+"px";
+  tipCur=el;
+}
+function hideTip(){tip.classList.remove("show");tipCur=null}
+document.querySelectorAll(".term").forEach(function(el){
+  el.tabIndex=0;
+  el.addEventListener("mouseenter",function(e){showTip(el,e.clientX,e.clientY)});
+  el.addEventListener("mousemove",function(e){
+    if(tipCur===el){var r=el.getBoundingClientRect();tip.style.left=Math.max(12,Math.min(e.clientX-tip.offsetWidth/2,window.innerWidth-tip.offsetWidth-12))+"px"}
+  });
+  el.addEventListener("mouseleave",hideTip);
+  el.addEventListener("focus",function(){var r=el.getBoundingClientRect();showTip(el,r.left+r.width/2,r.top)});
+  el.addEventListener("blur",hideTip);
+  /* клик/тап: показать подсказку; внутри label — не трогаем чекбокс */
+  el.addEventListener("click",function(e){
+    e.preventDefault();e.stopPropagation();
+    if(tipCur===el){hideTip()}else{var r=el.getBoundingClientRect();showTip(el,r.left+r.width/2,r.top)}
+  });
+});
+document.addEventListener("click",function(e){
+  if(tipCur&&!e.target.closest(".term"))hideTip();
+},true);
+window.addEventListener("scroll",hideTip,true);
+window.addEventListener("resize",hideTip);
+
+/* ---------- словарь ---------- */
+function plural(n){var m=n%10,h=n%100;if(m===1&&h!==11)return n+" слово";if(m>=2&&m<=4&&(h<10||h>=20))return n+" слова";return n+" слов"}
+(function(){
+  var box=document.getElementById("glossBox"),cnt=document.getElementById("glossCount"),n=0,html="";
+  Object.keys(TERMS).forEach(function(k){
+    var t=TERMS[k];if(t.meta)return;n++;
+    html+="<div class=\"gitem\"><b>"+esc(t.t)+"</b><p>"+esc(t.d)+"</p></div>";
+  });
+  if(box)box.innerHTML=html;
+  if(cnt)cnt.textContent=plural(n);
+})();
+
+/* ---------- чекбоксы и прогресс ---------- */
+var cks=document.querySelectorAll('.ck input[type=checkbox]');
+function applyState(){cks.forEach(function(c){c.checked=!!st.checked[c.dataset.id]})}
+cks.forEach(function(c){
+  c.addEventListener("change",function(){
+    if(c.checked)st.checked[c.dataset.id]=1;else delete st.checked[c.dataset.id];
+    save();refresh();
+  });
+});
+
+var CIRC=2*Math.PI*54;
+function refresh(){
+  var all=cks.length,done=0;
+  cks.forEach(function(c){if(st.checked[c.dataset.id])done++});
+  var frac=all?done/all:0;
+  document.getElementById("pct").textContent=Math.round(frac*100)+"%";
+  document.getElementById("tstats").textContent=done+" из "+all;
+  var ring=document.getElementById("ringbar");
+  if(ring){ring.style.strokeDasharray=CIRC;ring.style.strokeDashoffset=CIRC*(1-frac)}
+  var mods=document.querySelectorAll('.ck.read input');
+  var md=0;mods.forEach(function(m){if(st.checked[m.dataset.id])md++});
+  document.getElementById("mstats").textContent=md+" из "+mods.length;
+  var eb=document.getElementById("examBestOut");
+  if(eb)eb.textContent=(st.examBest===null||st.examBest===undefined)?"не сдан":st.examBest+" из 12";
+  var ds=document.getElementById("dstats");if(ds)ds.textContent=st.diary.length;
+  document.querySelectorAll("section.phase, section.proj").forEach(function(ph){
+    var list=ph.querySelectorAll('.ck input');
+    var d=0;list.forEach(function(c){if(st.checked[c.dataset.id])d++});
+    var el=ph.querySelector(".phcount");if(el)el.textContent=d+"/"+list.length;
+  });
+}
+
+/* ---------- «что делать дальше?» ---------- */
+document.getElementById("nextBtn").addEventListener("click",function(){
+  var out=document.getElementById("nextOut");
+  out.hidden=false;
+  var order=["route","knowledge","practice"],found=null;
+  for(var i=0;i<order.length&&!found;i++){
+    var cs=document.querySelectorAll('#tab-'+order[i]+' .ck input[type=checkbox]');
+    for(var j=0;j<cs.length;j++){
+      if(!st.checked[cs[j].dataset.id]){
+        var box=cs[j].closest("section.phase")||cs[j].closest("details.mod")||cs[j].closest("section.proj");
+        var name="";
+        if(box){
+          if(box.tagName==="DETAILS"){
+            var s=box.querySelector("summary").cloneNode(true);
+            var tag=s.querySelector(".modtag");if(tag)tag.remove();
+            name=s.textContent.replace(/\s+/g," ").trim();
+          }else{
+            var h=box.querySelector("h3");if(h)name=h.textContent;
+          }
+        }
+        var lab=cs[j].closest("label").querySelector("span");
+        found={tab:order[i],where:name||tabName(order[i]),what:lab?lab.textContent.replace(/\s+/g," ").trim():""};
+        break;
+      }
+    }
+  }
+  if(found){
+    out.innerHTML="<b>Следующий шаг:</b> "+esc(found.what)+"<span class=\"dim\">"+esc(found.where)+" · переключаю на вкладку «"+tabName(found.tab)+"»</span>";
+    showTab(found.tab);
+  }else if(st.examBest===null||st.examBest===undefined){
+    out.innerHTML="<b>Все задачи отмечены!</b> Финальный рубеж — экзамен на 12 вопросов.";
+    showTab("resources");
+  }else{
+    out.innerHTML="<b>План пройден.</b> Лучший результат экзамена: "+st.examBest+"/12. Поддерживайте форму: новые опыты в дневник, статьи, проекты.";
+  }
+});
+
+/* ---------- копирование шаблонов ---------- */
+document.querySelectorAll(".cbtn").forEach(function(b){
+  b.addEventListener("click",function(){
+    var pre=document.getElementById(b.dataset.t);
+    var txt=pre?pre.textContent:"";
+    function done(){b.textContent="Скопировано ✓";b.classList.add("ok");setTimeout(function(){b.textContent="Копировать";b.classList.remove("ok")},1600)}
+    function fb(){
+      var ta=document.createElement("textarea");ta.value=txt;
+      ta.style.position="fixed";ta.style.opacity="0";
+      document.body.appendChild(ta);ta.select();
+      try{document.execCommand("copy");done()}
+      catch(e){b.textContent="Не удалось — скопируйте вручную"}
+      document.body.removeChild(ta);
+    }
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done,fb);
+    }else{fb()}
+  });
+});
+
+/* ---------- дневник ---------- */
+var df=document.getElementById("dform");
+df.addEventListener("submit",function(e){
+  e.preventDefault();
+  var t=document.getElementById("dTitle"),h=document.getElementById("dHyp"),r=document.getElementById("dRes");
+  if(!t.value.trim()){t.focus();return}
+  st.diary.unshift({d:new Date().toISOString().slice(0,10),t:t.value.trim(),h:h.value.trim(),r:r.value.trim()});
+  save();renderDiary();refresh();
+  df.reset();t.focus();
+});
+function renderDiary(){
+  var box=document.getElementById("diaryList");
+  if(!st.diary.length){
+    box.innerHTML="<p class=\"empty\">Пока пусто. Первая запись: возьмите одну задачу, напишите 3 варианта запроса и зафиксируйте, какой сработал лучше и почему.</p>";
+    return;
+  }
+  var html="";
+  st.diary.forEach(function(e,i){
+    html+="<div class=\"dentry\"><div class=\"dh\"><b>"+esc(e.t)+"</b><time>"+esc(e.d)+"</time></div>"
+      +(e.h?"<p><b>Ожидание:</b> "+esc(e.h)+"</p>":"")
+      +(e.r?"<p><b>Что вышло:</b> "+esc(e.r)+"</p>":"")
+      +"<button class=\"del\" data-i=\""+i+"\" type=\"button\">удалить</button></div>";
+  });
+  box.innerHTML=html;
+  box.querySelectorAll(".del").forEach(function(b){
+    b.addEventListener("click",function(){
+      st.diary.splice(parseInt(b.dataset.i,10),1);save();renderDiary();refresh();
+    });
+  });
+}
+
+/* ---------- экзамен ---------- */
+var CORRECT=["b","c","a","b","a","b","a","c","a","b","c","a"];
+document.getElementById("examBtn").addEventListener("click",function(){
+  var qs=document.querySelectorAll("#tab-resources .q");
+  var score=0,answered=0;
+  qs.forEach(function(q,i){
+    var sel=q.querySelector("input:checked");
+    q.classList.remove("wrong","right");
+    if(sel){answered++;if(sel.value===CORRECT[i]){score++;q.classList.add("right")}else{q.classList.add("wrong")}}
+  });
+  var res=document.getElementById("examRes");
+  res.className="examres show";
+  if(answered<qs.length){
+    res.classList.add("warn");
+    res.innerHTML="<b>Отвечено "+answered+" из 12.</b> Дайте ответ на каждый вопрос — без этого экзамен ничего не проверит.";
+    return;
+  }
+  var verdict=score>=11?"Блестяще — можно идти на собеседование."
+    :score>=10?"Экзамен сдан. Разберите ошибки и двигайтесь к этапу 6."
+    :score>=7?"Неплохо, но ниже проходного (10). Перечитайте уроки по темам, где ошиблись."
+    :"База пока сыровата — вернитесь во вкладку «Уроки», темы 1–8.";
+  res.classList.add(score>=10?"good":score>=7?"mid":"bad");
+  var isBest=(st.examBest===null||st.examBest===undefined||score>st.examBest);
+  res.innerHTML="<b>Результат: "+score+" из 12.</b> "+verdict+(isBest&&score>0?" Это ваш новый лучший результат!":"");
+  if(isBest){st.examBest=score;save();refresh()}
+});
+document.getElementById("examReset").addEventListener("click",function(){
+  document.querySelectorAll("#tab-resources .q input").forEach(function(i){i.checked=false});
+  document.querySelectorAll("#tab-resources .q").forEach(function(q){q.classList.remove("wrong","right")});
+  var res=document.getElementById("examRes");res.className="examres";res.textContent="";
+});
+
+/* ---------- настройки ---------- */
+function note(msg){var el=document.getElementById("setNote");el.textContent=msg;setTimeout(function(){el.textContent=""},2600)}
+document.getElementById("expBtn").addEventListener("click",function(){
+  var blob=new Blob([JSON.stringify(st,null,2)],{type:"application/json"});
+  var a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);a.download="ai-path-progress.json";
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(a.href)},3000);
+  note("Файл прогресса сохранён в загрузки.");
+});
+document.getElementById("impBtn").addEventListener("click",function(){document.getElementById("impFile").click()});
+document.getElementById("impFile").addEventListener("change",function(e){
+  var f=e.target.files[0];if(!f)return;
+  var r=new FileReader();
+  r.onload=function(){
+    try{
+      var s=JSON.parse(r.result);
+      if(!s||typeof s!=="object")throw 0;
+      st=Object.assign(defState(),s);
+      save();applyState();refresh();renderDiary();
+      note("Прогресс загружен.");
+    }catch(err){note("Не удалось прочитать файл — это точно файл прогресса?")}
+  };
+  r.readAsText(f);
+  e.target.value="";
+});
+document.getElementById("resetBtn").addEventListener("click",function(){
+  if(window.confirm("Точно начать с нуля? Весь прогресс, дневник и результат экзамена удалятся безвозвратно.")){
+    st=defState();save();applyState();refresh();renderDiary();
+    note("Прогресс сброшен.");
+  }
+});
+
+/* ---------- запуск ---------- */
+renderDiary();
+applyState();
+refresh();
+if(st.lastTab&&document.getElementById("tab-"+st.lastTab)){showTab(st.lastTab)}
+
+/* service worker: только при работе с хостинга (http/https) */
+if("serviceWorker" in navigator&&location.protocol.indexOf("http")===0){
+  navigator.serviceWorker.register("sw.js").catch(function(){});
+}
+})();
+</script>
+</body>
+</html>
