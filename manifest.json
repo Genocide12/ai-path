@@ -1,14 +1,14 @@
 {
   "name": "Путь AI-инженера",
   "short_name": "AI Путь",
-  "description": "Самоучитель: уроки, практика и экзамены открываются по мере прохождения. Работает офлайн.",
+  "description": "12 этапов до экспертизы: уроки, практика и экзамены открываются по мере прохождения. Работает офлайн.",
   "lang": "ru",
   "start_url": "./index.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#faf6f0",
-  "theme_color": "#faf6f0",
+  "background_color": "#f7f4ed",
+  "theme_color": "#f7f4ed",
   "icons": [
     {
       "src": "./icon-192.png",
